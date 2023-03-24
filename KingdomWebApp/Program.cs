@@ -8,10 +8,13 @@ using KingdomWebApp.Models;
 using KingdomWebApp.Repository;
 using KingdomWebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpContextAccessor();
@@ -19,8 +22,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 // Register repository and service classes for dependency injection.
 builder.Services.AddScoped<IGuildRepository, GuildRepository>();
@@ -36,27 +41,29 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 
 // Add and configure the ApplicationDbContext to use SQL Server.
 
-// Configure the ApplicationDbContext to use SQL Server with the connection string from appsettings.json.
+builder.Configuration.AddEnvironmentVariables();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
+
+
+
+
+// Configure the ApplicationDbContext to use SQL Server with the correct connection string.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        var keyVaultUri = builder.Configuration["KeyVaultUri"];
-        var credential = new DefaultAzureCredential();
-        var client = new SecretClient(new Uri(keyVaultUri), credential);
-        var secret = client.GetSecret("production-db-password");
-        var password = secret.Value;
-
-        //var connectionString = builder.Configuration.GetConnectionString("ProductionConnection");
-
-        var connectionString = builder.Configuration.GetConnectionString("ProductionConnection");
-
-        options.UseSqlServer(connectionString);
-
+        var connectionString = builder.Configuration.GetConnectionString("DevelopmentConnection");
+       options.UseSqlServer(connectionString);
     }
     else
     {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        options.UseSqlServer(connectionString);
     }
 });
 
