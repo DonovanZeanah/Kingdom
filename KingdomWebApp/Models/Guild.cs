@@ -18,6 +18,6 @@ namespace KingdomWebApp.Models
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
-        public string GuildSubcategory { get; set; }    
+        public GuildSubcategory GuildSubcategory { get; set; }    
     }
 }

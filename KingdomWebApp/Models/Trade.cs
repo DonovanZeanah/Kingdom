@@ -21,7 +21,7 @@ namespace KingdomWebApp.Models
         public int AddressId { get; set; }
         public Address Address { get; set; }
         public TradeCategory TradeCategory { get; set; }
-        public TradeSubcategory TradeSubcategory { get; set; }
+        public GuildSubcategory TradeSubcategory { get; set; }
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
