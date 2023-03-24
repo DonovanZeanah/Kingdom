@@ -30,54 +30,54 @@ namespace KingdomWebApp.Data
                     {
                         new Guild()
                         {
-                            Title = "Skilling Guild 1",
+                            Title = "Programming",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first cinema",
                             GuildCategory = GuildCategory.City,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Tuscaloosa",
+                                State = "AL"
                             }
                          },
                         new Guild()
                         {
-                            Title = "Skilling Guild 2",
+                            Title = "WoodWorking",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first cinema",
                             GuildCategory = GuildCategory.Endurance,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Tuscaloosa",
+                                State = "AL"
                             }
                         },
                         new Guild()
                         {
-                            Title = "Skilling Guild 3",
+                            Title = "College",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first guild",
                             GuildCategory = GuildCategory.Trail,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
-                                State = "NC"
+                                City = "Tuscaloosa",
+                                State = "AL"
                             }
                         },
                         new Guild()
                         {
-                            Title = "Skilling Guild 3",
+                            Title = "Mercedes",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first guild",
                             GuildCategory = GuildCategory.City,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Michigan",
-                                State = "NC"
+                                City = "Tuscaloosa",
+                                State = "AL"
                             }
                         }
                     });
@@ -90,7 +90,7 @@ namespace KingdomWebApp.Data
                     {
                         new Trade()
                         {
-                            Title = "Skilling Trade 1",
+                            Title = "Programmer",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first trade",
                             TradeCategory = TradeCategory.Marathon,
@@ -103,7 +103,7 @@ namespace KingdomWebApp.Data
                         },
                         new Trade()
                         {
-                            Title = "Skilling Trade 2",
+                            Title = "WoodCrafter",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first trade",
                             TradeCategory = TradeCategory.Ultra,
@@ -175,7 +175,7 @@ namespace KingdomWebApp.Data
                             State = "NC"
                         }
                     };
-                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAppUser, "Program!1234?");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
