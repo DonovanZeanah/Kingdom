@@ -532,3 +532,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 >>>>>>> master
+/KingdomWebApp/appsettings.Development.json
+/KingdomWebApp/appsettings.json
