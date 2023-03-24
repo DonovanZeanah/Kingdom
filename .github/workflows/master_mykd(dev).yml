@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'mykd'
           slot-name: 'Dev'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_712D5F1D4E7D475C955D11B77C067FD8 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8e1317cea61b4c5981b95bd43ca7c70e }}
           package: .

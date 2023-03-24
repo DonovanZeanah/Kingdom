@@ -17,7 +17,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-<<<<<<< HEAD
 *clientapp/.angular/cache/
 *clientapp/.angular/cache/*
 # User-specific files (MonoDevelop/Xamarin Studio)
@@ -29,6 +28,11 @@ appsettings.production.json*
 appsettings.production.json
 appsettings.Development.json*
 appsettings.Development.json
+/.github/workflows/master_mykd.yml
+/.github/workflows/main.yml
+/.github/workflows/master_mykd.yml
+/.github/workflows/master_mykd(deploy).yml
+/.github/workflows/dev_mykd(development).yml
 
 
 =======
