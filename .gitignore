@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
-*.yml
+
 *.rsuser
 *.suo
 *.user
@@ -12,7 +12,9 @@
 *.sln.docstates
 *.txt
 *.PublishSettings
-
+*.secret
+secret**
+deployment-microsoft/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
