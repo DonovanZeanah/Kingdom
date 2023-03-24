@@ -27,6 +27,9 @@ ClientApp/**/*.angular*
 Kingdom/old.scraps/**/*.angular*
 appsettings.production.json*
 appsettings.production.json
+appsettings.Development.json*
+appsettings.Development.json
+
 
 =======
 *.txt
