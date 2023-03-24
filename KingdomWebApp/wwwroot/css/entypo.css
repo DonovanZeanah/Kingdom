@@ -311,7 +311,7 @@
 .icon-remove-user:before { content: '\e8fd'; } /* '' */
 .icon-reply-all:before { content: '\e8fe'; } /* '' */
 .icon-reply:before { content: '\e8ff'; } /* '' */
-.icon-resize-100%:before { content: '\e900'; } /* '' */
+.icon-resize-100:before { content: '\e900'; } /* '' */
 .icon-resize-full-screen:before { content: '\e901'; } /* '' */
 .icon-retweet:before { content: '\e902'; } /* '' */
 .icon-rocket:before { content: '\e903'; } /* '' */

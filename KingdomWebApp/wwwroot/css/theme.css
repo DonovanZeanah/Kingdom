@@ -9040,7 +9040,7 @@ section > .decorative-divider:first-child {
 
 .flatpickr-months .flatpickr-prev-month svg path, .flatpickr-months .flatpickr-next-month svg path {
   transition: fill .1s;
-  fill: inherit; }
+  fill: child; }
 
 .numInputWrapper {
   position: relative;
@@ -9142,7 +9142,7 @@ section > .decorative-divider:first-child {
 
 .flatpickr-current-month .numInputWrapper {
   width: 6ch;
-  width: 7ch\0;
+  width: 7ch;
   display: inline-block; }
 
 .flatpickr-current-month .numInputWrapper span.arrowUp:after {
@@ -9169,7 +9169,9 @@ section > .decorative-divider:first-child {
   vertical-align: initial;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  appearance: textfield; }
+  appearance: auto; 
+
+}
 
 .flatpickr-current-month input.cur-year:focus {
   outline: 0; }
@@ -9395,7 +9397,7 @@ span.flatpickr-weekday {
   box-sizing: border-box;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  appearance: textfield; }
+  appearance: auto; }
 
 .flatpickr-time input.flatpickr-hour {
   font-weight: bold; }
@@ -9519,7 +9521,6 @@ http://flickity.metafizzy.co
 
 .flickity-enabled.is-draggable {
   -webkit-tap-highlight-color: transparent;
-  tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

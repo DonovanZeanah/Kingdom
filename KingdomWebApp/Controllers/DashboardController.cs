@@ -30,5 +30,10 @@ namespace KingdomWebApp.Controllers
             };
             return View(dashboardViewModel);
         }
+
+        public IActionResult EditUserProfile()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

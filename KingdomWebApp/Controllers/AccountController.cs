@@ -124,5 +124,9 @@ namespace KingdomWebApp.Controllers
         }
 
 
+        public IActionResult EditProfile()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

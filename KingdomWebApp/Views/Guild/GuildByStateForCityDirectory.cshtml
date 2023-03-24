@@ -1,5 +1,5 @@
 ﻿@using KingdomWebApp.ViewModels
-@model SkillingGuildByState
+@model Guild
 
 
 
@@ -25,7 +25,7 @@
             @foreach (var val in Model.States)
             {
                 <li class="li-item">
-                    <a class="state-link" asp-controller="Guild" asp-action="SkillingGuildsByCityDirectory" asp-route-state="@val.StateName">@val.StateName</a>
+                    <a class="state-link" asp-controller="Guild" asp-action="GuildsByCityDirectory" asp-route-state="@val.StateName">@val.StateName</a>
                 </li>
             }
         </ul>

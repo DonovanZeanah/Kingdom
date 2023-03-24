@@ -2,7 +2,7 @@
 
 namespace KingdomWebApp.ViewModels
 {
-    public class SkillingGuildByState
+    public class GuildsByState
     {
         public List<State> States { get; set; } = null;
     }

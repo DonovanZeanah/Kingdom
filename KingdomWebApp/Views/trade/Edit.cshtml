@@ -1,6 +1,6 @@
-﻿@    using KingdomWebApp.Data.Enum
-@    using KingdomWebApp.ViewModels
-@model EditGuildViewModel
+﻿@using KingdomWebApp.Models.Enum
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model KingdomWebApp.ViewModels.EditTradeViewModel
 
 
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
@@ -16,11 +16,11 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="GuildCategory">Guild Category</label>
-        <select asp-for="GuildCategory" asp-items="@Html.GetEnumSelectList<GuildCategory>()" class="form-control">
+        <label asp-for="TradeCategory">Guild Category</label>
+        <select asp-for="TradeCategory" asp-items="Html.GetEnumSelectList<TradeCategory>()" class="form-control">
             <option selected="selected" value="">--Select--</option>
         </select>
-        <span asp-validation-for="GuildCategory" class="text-danger"></span>
+        <span asp-validation-for="TradeCategory" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address.Street">Street</label>

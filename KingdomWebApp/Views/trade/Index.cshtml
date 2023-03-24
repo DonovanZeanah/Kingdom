@@ -1,7 +1,7 @@
-﻿@    using KingdomWebApp.Data.Enum
-@    using KingdomWebApp.Extensions
-@    using KingdomWebApp.ViewModels
-@model IndexTradeViewModel
+﻿@using KingdomWebApp.Models.Enum
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using KingdomWebApp.Extensions
+@model KingdomWebApp.ViewModels.IndexTradeViewModel
 
 @{
     bool isAuthenticated = User.Identity?.IsAuthenticated == true;

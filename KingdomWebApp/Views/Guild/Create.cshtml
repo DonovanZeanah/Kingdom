@@ -1,9 +1,13 @@
-﻿@    using KingdomWebApp.Data.Enum
-@    using KingdomWebApp.ViewModels
-@model CreateTradeViewModel
+﻿
+@using KingdomWebApp.Models.Enum
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model KingdomWebApp.ViewModels.CreateGuildViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 
 
- <div class="navbar-container">
+    <div class="navbar-container">
     </div>
     <div class="main-container">
       <section class="space-sm">
@@ -15,37 +19,33 @@
           <div class="row flex-md-row card card-md">
             <div class="card-body bg-secondary">
               <div class="text-center mb-5">
-                <h1 class="h2 mb-2">Create your own trade</h1>
-                <span>Challenge the Questers in your community</span>
+                <h1 class="h2 mb-2">Create your own Quest guild</h1>
+                <span>Bring together Questers in your community</span>
               </div>
               <div class="row justify-content-center">
                 <div class="col-6 col-lg-5">
                   <form method="post" asp-action="Create" enctype="multipart/form-data">
                    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
                     <div class="form-row form-group">
-                      <div class="col">                       
+                      <div class="col">                        
                         <input asp-for="Title" class="form-control form-control-lg" placeholder="Title" />
                         <span asp-validation-for="Title" class="text-danger"></span>
                       </div>
+                      <div class="col">                        
+                        <select asp-for="GuildCategory" asp-items="@Html.GetEnumSelectList<GuildCategory>()" class="form-control form-control-lg">
+                                <option>--Select--</option>
+                        </select>
+                        <span asp-validation-for="GuildCategory" class="text-danger"></span>
+                      </div>
                     </div>
                     <div class="form-row form-group">
-                      <div class="col">                        
+                      <div class="col">                       
                         <input asp-for="Description" class="form-control form-control-lg" placeholder="Description" />
                         <span asp-validation-for="Description" class="text-danger"></span>
                       </div>
                     </div> 
-
                     <div class="form-row form-group">
                       <div class="col">                        
-                         <select asp-for="TradeCategory" asp-items="@Html.GetEnumSelectList<TradeCategory>()" class="form-control">
-                                    <option>--Select--</option>
-                         </select>
-                         <span asp-validation-for="TradeCategory" class="text-danger"></span>
-                      </div>
-                    </div> 
-
-                    <div class="form-row form-group">
-                      <div class="col">                      
                         <input asp-for="Address.Street" class="form-control form-control-lg" placeholder="Street" />
                         <span asp-validation-for="Address.Street" class="text-danger"></span>
                       </div>
@@ -55,7 +55,7 @@
                         <input asp-for="Address.City" class="form-control form-control-lg" placeholder="City" />
                         <span asp-validation-for="Address.City" class="text-danger"></span>
                       </div>
-                      <div class="col">
+                      <div class="col">                        
                         <input asp-for="Address.State" class="form-control form-control-lg" placeholder="State" />
                         <span asp-validation-for="Address.State" class="text-danger"></span>
                       </div>
@@ -82,62 +82,3 @@
       <!--end of section-->
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-<form method="post" asp-action="Create" enctype="multipart/form-data">
-    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
-  <div class="form-group">
-    <label asp-for="Title">Title</label>
-    <input asp-for="Title" class="form-control" placeholder="Title">
-    <span asp-validation-for="Title" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Description">Description</label>
-    <input asp-for="Description" class="form-control" placeholder="Description">
-    <span asp-validation-for="Description" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="TradeCategory">Trade Category</label>
-    <select asp-for="TradeCategory" asp-items="@Html.GetEnumSelectList<TradeCategory>()" class="form-control">
-             <option>--Select--</option>
-    </select>
-    <span asp-validation-for="TradeCategory" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Address.Street">Street</label>
-    <input asp-for="Address.Street" class="form-control" placeholder="Street">
-    <span asp-validation-for="Address.Street" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Address.City">City</label>
-    <input asp-for="Address.City" class="form-control" placeholder="Street">
-    <span asp-validation-for="Address.Street" class="text-danger"></span>
-  </div>
-    <div class="form-group">
-    <label asp-for="Address.State">State</label>
-    <input asp-for="Address.State" class="form-control" placeholder="Street">
-    <span asp-validation-for="Address.State" class="text-danger"></span>
-  </div>
-    <div class="form-group">
-    <label asp-for="Image">Image</label>
-    <input asp-for="Image" type="file" class="form-control" placeholder="Image">
-    <span asp-validation-for="Image" class="text-danger"></span>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-*@

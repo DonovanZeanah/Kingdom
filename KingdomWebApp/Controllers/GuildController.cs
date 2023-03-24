@@ -19,7 +19,7 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds")]
+        [Route("Guilds")]
         public async Task<IActionResult> Index(int category = -1, int page = 1, int pageSize = 6)
         {
             if (page < 1 || pageSize < 1)
@@ -54,7 +54,7 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds/{state}")]
+        [Route("Guilds/{state}")]
         public async Task<IActionResult> ListGuildsByState(string state)
         {
             var guilds = await _guildRepository.GetGuildsByState(StateConverter.GetStateByName(state).ToString());
@@ -74,7 +74,7 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds/{city}/{state}")]
+        [Route("Guilds/{city}/{state}")]
         public async Task<IActionResult> ListGuildsByCity(string city, string state)
         {
             var guilds = await _guildRepository.GetGuildByCity(city);
@@ -95,7 +95,7 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("guild/{QuestGuild}/{id}")]
+        [Route("guild/{Guild}/{id}")]
         public async Task<IActionResult> DetailGuild(int id, string QuestGuild)
         {
             var guild = await _guildRepository.GetByIdAsync(id);
@@ -104,11 +104,11 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds/State")]
-        public async Task<IActionResult> SkillingGuildsByStateDirectory()
+        [Route("Guilds/State")]
+        public async Task<IActionResult> GuildsByStateDirectory()
         {
             var states = await _guildRepository.GetAllStates();
-            var guildVM = new SkillingGuildByState()
+            var guildVM = new GuildsByState()
             {
                 States = states
             };
@@ -117,11 +117,11 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds/State/City")]
-        public async Task<IActionResult> SkillingGuildsByStateForCityDirectory()
+        [Route("Guilds/State/City")]
+        public async Task<IActionResult> GuildsByStateForCityDirectory()
         {
             var states = await _guildRepository.GetAllStates();
-            var guildVM = new SkillingGuildByState()
+            var guildVM = new GuildsByState()
             {
                 States = states
             };
@@ -130,11 +130,11 @@ namespace KingdomWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("SkillingGuilds/{state}/City")]
-        public async Task<IActionResult> SkillingGuildsByCityDirectory(string state)
+        [Route("Guilds/{state}/City")]
+        public async Task<IActionResult> GuildsByCityDirectory(string state)
         {
             var cities = await _guildRepository.GetAllCitiesByState(StateConverter.GetStateByName(state).ToString());
-            var guildVM = new SkillingGuildByCity()
+            var guildVM = new GuildsByCity()
             {
                 Cities = cities
             };
