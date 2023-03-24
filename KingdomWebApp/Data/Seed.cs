@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Data
 {
@@ -73,6 +73,7 @@ namespace KingdomWebApp.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first guild",
                             GuildCategory = GuildCategory.City,
+                            GuildSubcategory = Automotive,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -93,7 +94,7 @@ namespace KingdomWebApp.Data
                             Title = "Programmer",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first trade",
-                            TradeCategory = TradeCategory.Marathon,
+                            TradeCategory = TradeCategory.Digital ,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -106,7 +107,7 @@ namespace KingdomWebApp.Data
                             Title = "WoodCrafter",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first trade",
-                            TradeCategory = TradeCategory.Ultra,
+                            TradeCategory = TradeCategory.Craftsman,
                             AddressId = 5,
                             Address = new Address()
                             {
@@ -121,23 +122,41 @@ namespace KingdomWebApp.Data
             }
         }
 
+        // This method seeds users and roles into the Identity database.
+
         public async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
+            // Create a new scope for dependency injection.
+
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
                 //Roles
+                // Retrieve RoleManager to manage Identity roles.
+
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                // Create the Admin role if it doesn't exist.
 
                 if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+
+                // Create the User role if it doesn't exist.
+
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
                 //Users
+                // Retrieve UserManager to manage Identity users.
+
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+
                 string adminUserEmail = "dkzeanah@gmail.com";
+                // Find the admin user by email.
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+
+                // If the admin user doesn't exist, create a new one.
+
                 if (adminUser == null)
                 {
                     var newAdminUser = new AppUser()
@@ -152,15 +171,23 @@ namespace KingdomWebApp.Data
                             State = "Al"
                         }
                     };
+                    // Create the new admin user with a predefined password from configuration.
 
-                     
                     await userManager.CreateAsync(newAdminUser, _configuration["UserSecrets:AdminPassword"]);
+
+                    // Assign the new admin user to the Admin role.
+
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
+
+                // Find the regular user by email.
 
                 string appUserEmail = "user@etickets.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
+
+                // If the regular user doesn't exist, create a new one.
+
                 if (appUser == null)
                 {
                     var newAppUser = new AppUser()
@@ -175,7 +202,12 @@ namespace KingdomWebApp.Data
                             State = "NC"
                         }
                     };
+                    // Create the new regular user with a predefined password.
+
                     await userManager.CreateAsync(newAppUser, "Program!1234?");
+
+                    // Assign the new regular user to the User role.
+
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }

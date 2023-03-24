@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Extensions;
 using KingdomWebApp.Models;
 using KingdomWebApp.Scraper.Data;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Scraper.Services
 {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KingdomWebApp.Data;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Interfaces;
 using KingdomWebApp.Models;
 using KingdomWebApp.ViewModels;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Controllers
 {

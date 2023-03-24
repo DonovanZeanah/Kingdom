@@ -1,4 +1,4 @@
-﻿namespace KingdomWebApp.Data.Enum
+﻿namespace KingdomWebApp.Models.Enum
 {
     public enum GuildCategory
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Helpers;
 using KingdomWebApp.Interfaces;
 using KingdomWebApp.Models;
 using KingdomWebApp.ViewModels;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Controllers
 {

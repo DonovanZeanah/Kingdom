@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using KingdomWebApp.Data;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Interfaces;
 using KingdomWebApp.Models;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Repository
 {

@@ -1,5 +1,5 @@
-﻿using KingdomWebApp.Data.Enum;
-using KingdomWebApp.Models;
+﻿using KingdomWebApp.Models;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿using KingdomWebApp.Data.Enum;
+﻿using KingdomWebApp.Models.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,5 +18,6 @@ namespace KingdomWebApp.Models
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
+        public string GuildSubcategory { get; set; }    
     }
 }

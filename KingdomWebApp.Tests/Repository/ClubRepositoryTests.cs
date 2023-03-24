@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using KingdomWebApp.Data;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Models;
 using KingdomWebApp.Repository;
 using System;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Tests.Repository
 {

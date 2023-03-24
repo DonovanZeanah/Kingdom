@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using KingdomWebApp.Data;
-using KingdomWebApp.Data.Enum;
 using KingdomWebApp.Interfaces;
 using KingdomWebApp.Models;
 using KingdomWebApp.Repository;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KingdomWebApp.Models.Enum;
 
 namespace KingdomWebApp.Scraper.Services
 {
@@ -70,7 +70,7 @@ namespace KingdomWebApp.Scraper.Services
                                     State = _driver.FindElement(By.CssSelector("span[itemprop='addressRegion']")).Text ?? "",
                                     Street = _driver.FindElement(By.CssSelector("div[itemprop='address']")).Text ?? "",
                                 },
-                                TradeCategory = TradeCategory.Ultra
+                                TradeCategory = TradeCategory.Craftsman
                             };
                             using (var context = new ScraperDBContext())
                             {
