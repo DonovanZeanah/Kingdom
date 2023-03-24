@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
+@using KingdomWebApp.ViewModels
+@model ListGuildByStateViewModel
+
+<section class="space-sm flush-with-above">
+    <div class="container">
+        @if (Model.NoGuildWarning == true)
+        {
+            <h1 class="fw-light">
+                There are no Quest guilds in your area! <a asp-area="" asp-controller="Account"
+                                                        asp-action="Login">Login</a> and create one!
+            </h1>
+        }
+        else
+        {
+            <h1>Skilling Guilds in @Model.State</h1>
+        }
+        <ul class="row feature-list feature-list-sm">
+            @foreach (var guild in Model.Guilds)
+            {
+                <li class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <a type="button" asp-controller="Guild" asp-action="Detail" asp-route-id="@guild.Id">
+                            <img class="card-img-top" src="@guild.Image" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">@guild.Title</h4>
+                            <p class="card-text">@guild.Description</p>
+                        </div>
+                        <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                            <div>
+                                <small>@guild.GuildCategory</small>
+                            </div>
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                            {
+                                <div>
+                                    <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Guild" asp-action="Edit" asp-route-id="@guild.Id">
+                                        Edit
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Guild" asp-action="Delete" asp-route-id="@guild.Id">
+                                        Delete
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
