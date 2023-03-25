@@ -40,12 +40,13 @@ jobs:
           mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomAngularApp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
 
       - name: Upload artifact for deployment job
+        if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: .net-app
+          name: MyKdApp
           path: ${{env.DOTNET_ROOT}}/KingdomWebApp
 
   deploy:
@@ -59,7 +60,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: .net-app
+          name: MyKdApp
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
