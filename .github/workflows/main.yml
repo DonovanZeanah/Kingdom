@@ -30,7 +30,7 @@ jobs:
         working-directory: 'KingdomWebApp\ClientApp'
         run: |
           npm ci
-          ng build --configuration production
+          npx ng build --configuration production
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
