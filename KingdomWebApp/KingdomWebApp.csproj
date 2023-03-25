@@ -7,9 +7,16 @@
 	  <UserSecretsId>{6075F078-ABF9-477E-8444-FD96EB6EDF25}</UserSecretsId>
   </PropertyGroup>
 
-	<Target Name="PublishAngular" AfterTargets="ComputeFilesToPublish">
-		<Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)\ClientApp" />
-		<Exec Command="npm run build -- --prod" WorkingDirectory="$(MSBuildProjectDirectory)\ClientApp" />
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npm ci" />
+		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npx ng build --prod" />
+		<ItemGroup>
+			<DistFiles Include="ClientApp\dist\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			</ResolvedFileToPublish>
+		</ItemGroup>
 	</Target>
 
   <ItemGroup>
