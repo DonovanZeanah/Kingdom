@@ -68,8 +68,8 @@ jobs:
           creds: ${{ secrets.AZURE_USERNAME }}:${{ secrets.AZURE_PASSWORD }}
 
       - name: Deploy to Azure
-            run: |
-              echo "Deploying to Azure..."
-              curl -X POST -u ${{ secrets.AZURE_WEBAPP_PUBLISH_USERNAME }}:${{ secrets.AZURE_WEBAPP_PUBLISH_PASSWORD }} --data-binary @- "https://${{ secrets.AZURE_WEBAPP_NAME }}.scm.azurewebsites.net/api/zipdeploy" < <(zip -r - * .[^.]*)
-            env:
-              AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+        run: |
+          echo "Deploying to Azure..."
+          curl -X POST -u ${{ secrets.AZURE_WEBAPP_PUBLISH_USERNAME }}:${{ secrets.AZURE_WEBAPP_PUBLISH_PASSWORD }} --data-binary @- "https://${{ secrets.AZURE_WEBAPP_NAME }}.scm.azurewebsites.net/api/zipdeploy" < <(zip -r - * .[^.]*)
+        env:
+          AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
