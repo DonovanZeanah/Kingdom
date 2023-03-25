@@ -22,6 +22,28 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - name: Clean .NET Core solution
+        run: dotnet clean --configuration Release
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Delete Angular build output
+        run: |
+          if [ -d "wwwroot" ]; then
+            rm -rf wwwroot
+          fi
+
+      - name: Install dependencies and build Angular app
+        run: |
+          npm ci
+          npx ng build --prod
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
