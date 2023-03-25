@@ -27,7 +27,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies and build Angular app
-        working-directory: 'KingdomWebApp\ClientApp'
+        working-directory: 'KingdomWebApp/ClientApp'
         run: |
           npm ci
           npx ng build --configuration production
@@ -37,17 +37,16 @@ jobs:
 
       - name: Copy Angular build output to wwwroot
         run: |
-          mkdir ${{env.DOTNET_ROOT}}/myapp/wwwroot
-          xcopy /E /I /Y .\dist\<your-angular-app-folder-name>\* ${{env.DOTNET_ROOT}}/myapp/wwwroot\
+          mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomAngularApp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.DOTNET_ROOT}}/KingdomWebApp
 
   deploy:
     runs-on: windows-latest
