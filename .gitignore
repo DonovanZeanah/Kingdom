@@ -33,6 +33,7 @@ appsettings.Development.json
 /.github/workflows/master_mykd.yml
 /.github/workflows/master_mykd(deploy).yml
 /.github/workflows/dev_mykd(development).yml
+/deployment-microsoft*
 
 
 =======
