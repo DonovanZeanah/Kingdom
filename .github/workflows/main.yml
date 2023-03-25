@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - MyKd
+name: Build and deploy ASP.Net Core app to Azure Web App - mykd
 
 on:
   push:
@@ -19,8 +19,30 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.x'
           include-prerelease: true
+
+      - name: Clean .NET Core solution
+        run: dotnet clean --configuration Release
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Delete Angular build output
+        run: |
+          if [ -d "wwwroot" ]; then
+            rm -rf wwwroot
+          fi
+
+      - name: Install dependencies and build Angular app
+        run: |
+          npm ci
+          npx ng build --prod
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
@@ -38,7 +60,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Dev'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -51,7 +73,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'MyKd'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
+          app-name: 'mykd'
+          slot-name: 'Dev'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8e1317cea61b4c5981b95bd43ca7c70e }}
           package: .
