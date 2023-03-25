@@ -27,7 +27,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies and build Angular app
-        working-directory: './<ProjectDirectory>/ClientApp'
+        working-directory: 'KingdomWebApp\ClientApp'
         run: |
           npm ci
           ng build --configuration production
