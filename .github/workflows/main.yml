@@ -62,11 +62,6 @@ jobs:
         with:
           name: MyKdApp
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_USERNAME }}:${{ secrets.AZURE_PASSWORD }}
-
       - name: Deploy to Azure
         run: |
           echo "Deploying to Azure..."
