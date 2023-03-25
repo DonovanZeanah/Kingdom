@@ -22,11 +22,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Set Azure Subscription
-        uses: azure/cli@v1
-        with:
-          azcliversion: 2.0.72
-          inlineScript: az account set --subscription 5c96f086-5467-43b5-b45e-f23b77b5b80e
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
@@ -92,5 +88,5 @@ jobs:
         with:
           app-name: 'mykd(Dev)'
           slot-name: 'Dev'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_712D5F1D4E7D475C955D11B77C067FD8 }}
+          publish-profile: ./publishProfile.xml
           package: .
