@@ -62,11 +62,16 @@ jobs:
         with:
           name: MyKdApp
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_USERNAME }}:${{ secrets.AZURE_PASSWORD }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'mykd(Dev)'
           slot-name: 'Dev'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8e1317cea61b4c5981b95bd43ca7c70e }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_712D5F1D4E7D475C955D11B77C067FD8 }}
           package: .
