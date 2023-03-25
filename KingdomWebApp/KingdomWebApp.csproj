@@ -9,7 +9,7 @@
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npm ci" />
-		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npx ng build --prod" />
+		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npx ng build --configuration production" />
 		<ItemGroup>
 			<DistFiles Include="ClientApp\dist\**" />
 			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
