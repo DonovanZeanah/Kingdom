@@ -15,6 +15,25 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - name: Save Publish Profile to file
+        run: echo "${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}" > publishProfile.xml
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set Azure Subscription
+        uses: azure/cli@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: az account set --subscription 5c96f086-5467-43b5-b45e-f23b77b5b80e
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: <app-service-name>
+          publish-profile: ./publishProfile.xml
+
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
