@@ -27,9 +27,10 @@ jobs:
           node-version: 16
 
       - name: Install dependencies and build Angular app
+        working-directory: './<ProjectDirectory>/ClientApp'
         run: |
           npm ci
-          npx ng build --prod
+          ng build --configuration production
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
