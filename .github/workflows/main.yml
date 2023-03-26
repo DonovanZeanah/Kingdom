@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -26,47 +24,46 @@ jobs:
         with:
           node-version: 16
 
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ./publish
+
       - name: Install dependencies and build Angular app
         working-directory: 'KingdomWebApp/ClientApp'
         run: |
           npm ci
           npx ng build --configuration production
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
       - name: Copy Angular build output to wwwroot
         run: |
           mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot
-
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
-
+      
       - name: Upload artifact for deployment job
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: MykdApp
-          path: ${{env.DOTNET_ROOT}}/KingdomWebApp
+          path: ./publish
+
   deploy:
       runs-on: windows-latest
       needs: build
-      environment:
-        name: 'Dev'
-        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
       steps:
         - name: Download artifact from build job
           uses: actions/download-artifact@v2
           with:
             name: MykdApp
+            path: ./publish
+            
 
         - name: Deploy to Azure Web App
           id: deploy-to-webapp
           uses: azure/webapps-deploy@v2
           with:
-            app-name: 'MyKd-dev'
-            slot-name: 'mykd-Dev'
+            app-name: 'MyKd'
             publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1234 }}
             package: .
   
