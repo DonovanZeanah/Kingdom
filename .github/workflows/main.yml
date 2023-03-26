@@ -66,12 +66,10 @@ jobs:
         run: |
           echo "Deploying to Azure..."
           Compress-Archive -Path * -DestinationPath archive.zip -Force
-          echo "Web App Name: $webAppName"
-          $webAppName = "${env:AZURE_WEBAPP_NAME}"
-          echo "Web App Name: $webAppName"
+          $publishUrl = "https://${env:AZURE_WEBAPP_NAME}.scm.azurewebsites.net/api/zipdeploy"
           $publishUsername = "${env:AZURE_WEBAPP_PUBLISH_USERNAME}"
           $publishPassword = "${env:AZURE_WEBAPP_PUBLISH_PASSWORD}"
-          Invoke-WebRequest -Uri "https://$webAppName.scm.azurewebsites.net/api/zipdeploy" -Method POST -InFile "archive.zip" -ContentType "multipart/form-data" -Credential (New-Object System.Management.Automation.PSCredential($publishUsername, (ConvertTo-SecureString $publishPassword -AsPlainText -Force)))
+          Invoke-WebRequest -Uri $publishUrl -Method POST -InFile "archive.zip" -ContentType "multipart/form-data" -Credential (New-Object System.Management.Automation.PSCredential($publishUsername, (ConvertTo-SecureString $publishPassword -AsPlainText -Force)))
         shell: pwsh
         env:
           AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
