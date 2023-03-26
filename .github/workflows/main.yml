@@ -46,7 +46,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: MyKdApp
+          name: MykdApp
           path: ${{env.DOTNET_ROOT}}/KingdomWebApp
   deploy:
       runs-on: windows-latest
