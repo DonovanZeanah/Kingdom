@@ -50,28 +50,23 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/KingdomWebApp
 
   deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Dev'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      runs-on: windows-latest
+      needs: build
+      environment:
+        name: 'Production'
+        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: MyKdApp
+      steps:
+        - name: Download artifact from build job
+          uses: actions/download-artifact@v2
+          with:
+            name: .net-app
 
-      - name: Deploy to Azure
-        run: |
-          echo "Deploying to Azure..."
-          Compress-Archive -Path * -DestinationPath archive.zip -Force
-          $publishUrl = "https://${env:AZURE_WEBAPP_NAME}.scm.azurewebsites.net/api/zipdeploy"
-          $publishUsername = "${env:AZURE_WEBAPP_PUBLISH_USERNAME}"
-          $publishPassword = "${env:AZURE_WEBAPP_PUBLISH_PASSWORD}"
-          Invoke-WebRequest -Uri $publishUrl -Method POST -InFile "archive.zip" -ContentType "multipart/form-data" -Credential (New-Object System.Management.Automation.PSCredential($publishUsername, (ConvertTo-SecureString $publishPassword -AsPlainText -Force)))
-        shell: pwsh
-        env:
-          AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
-          AZURE_WEBAPP_PUBLISH_USERNAME: ${{ secrets.AZURE_WEBAPP_PUBLISH_USERNAME }}
-          AZURE_WEBAPP_PUBLISH_PASSWORD: ${{ secrets.AZURE_WEBAPP_PUBLISH_PASSWORD }}
+        - name: Deploy to Azure Web App
+          id: deploy-to-webapp
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'MyKd'
+            slot-name: 'Production'
+            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1234 }}
+            package: .
