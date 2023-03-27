@@ -54,6 +54,12 @@ jobs:
       needs: build
 
       steps:
+
+        - name: Run migrations
+          env:
+            ConnectionString: ${{ secrets.CONNECTION_STRING }}
+          run: dotnet ef database update --project MyMigrations/MyMigrations.csproj --startup-project MyWebApp/MyWebApp.csproj
+
         - name: Download artifact from build job
           uses: actions/download-artifact@v2
           with:
