@@ -27,13 +27,13 @@ jobs:
           node-version: 16
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\KingdomWebApp
 
       - name: dotnet install ef
         run: dotnet tool install -g dotnet-ef
 
       - name: dotnet bundle migration
-        run: dotnet ef migrations bundle -p KingdomWebApp/KingdomWebApp.csproj -o ${{env.DOTNET_ROOT}}/KingdomWebApp/migrate
+        run: dotnet ef migrations bundle -p KingdomWebApp\KingdomWebApp.csproj -o ${{env.DOTNET_ROOT}}\migrate
 
       - name: Restore dependencies
         run: dotnet restore
@@ -42,7 +42,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Install dependencies and build Angular app
-        working-directory: 'KingdomWebApp/ClientApp'
+        working-directory: 'KingdomWebApp\ClientApp'
         run: |
           npm ci
           npx ng build --configuration production
