@@ -29,11 +29,11 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
 
-      - name: Install dotnet-ef
-        run: dotnet tool install --global dotnet-ef
+      - name: dotnet install ef
+        run: dotnet tool install -g dotnet-ef
 
-      - name: Add dotnet-ef to PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+      - name: dotnet bundle migration
+        run: dotnet ef migrations bundle -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o ${{env.DOTNET_ROOT}}/myapp/migrate
 
       - name: Restore dependencies
         run: dotnet restore
