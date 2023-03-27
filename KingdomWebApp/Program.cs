@@ -26,7 +26,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddTransient<seed>();
+builder.Services.AddTransient<seedAgain>();
 // Register repository and service classes for dependency injection.
 builder.Services.AddScoped<IGuildRepository, GuildRepository>();
 builder.Services.AddScoped<ITradeRepository, TradeRepository>();

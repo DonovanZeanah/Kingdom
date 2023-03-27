@@ -1,100 +1,91 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using KingdomWebApp.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using KingdomWebApp.Models.Enum;
+using WorkshopGroup.Data.Enum;
+using WorkshopGroup.Models;
 
-namespace KingdomWebApp.Data
+using WorkshopGroup.Data;
+
+namespace WorkshopGroup.Data
 {
-    public class Seed
+  public class seed
+  {
+    public static void SeedData(IApplicationBuilder applicationBuilder)
     {
-        private readonly IConfiguration _configuration;
+      using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+      {
+        var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
-        public Seed(IConfiguration configuration)
+        context.Database.EnsureCreated();
+
+        if (!context.Clubs.Any())
         {
-            _configuration = configuration;
-        }
-        public void SeedData(IApplicationBuilder applicationBuilder)
-        {
-            
-
-            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-
-                context.Database.EnsureCreated();
-
-                if (!context.Guilds.Any())
-                {
-                    context.Guilds.AddRange(new List<Guild>()
+          context.Clubs.AddRange(new List<Club>()
                     {
-                        new Guild()
+                        new Club()
                         {
-                            Title = "Programming",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
-                            GuildCategory = GuildCategory.City,
+                            Title = "WoodWorking Club",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of the WWC",
+                            ClubCategory = ClubCategory.WoodWorking,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Tuscaloosa",
-                                State = "AL"
+                                City = "Charlotte",
+                                State = "NC"
                             }
                          },
-                        new Guild()
+                        new Club()
                         {
-                            Title = "WoodWorking",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
-                            GuildCategory = GuildCategory.Endurance,
+                            Title = "Metalworking Club",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of the MWC",
+                            ClubCategory = ClubCategory.Metalworking,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Tuscaloosa",
+                                City = "Charlotte",
                                 State = "AL"
                             }
                         },
-                        new Guild()
+                        new Club()
                         {
-                            Title = "College",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first guild",
-                            GuildCategory = GuildCategory.Trail,
+                            Title = "Engraving",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of the EG",
+                            ClubCategory = ClubCategory.Engraving,
                             Address = new Address()
                             {
-                                Street = "123 Main St",
-                                City = "Tuscaloosa",
+                                Street = "133 Main St",
+                                City = "Charlotte",
                                 State = "AL"
                             }
                         },
-                        new Guild()
+                        new Club()
                         {
-                            Title = "Mercedes",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first guild",
-                            GuildCategory = GuildCategory.City,
-                            GuildSubcategory = GuildSubcategory.Automotive,
+                            Title = "ThreeDPrinting",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of the 3DPC",
+                            ClubCategory = ClubCategory.ThreeDprinting,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Tuscaloosa",
-                                State = "AL"
+                                City = "Michigan",
+                                State = "NC"
                             }
                         }
                     });
-                    context.SaveChanges();
-                }
-                //Trades
-                if (!context.Trades.Any())
-                {
-                    context.Trades.AddRange(new List<Trade>()
+          context.SaveChanges();
+        }
+        //Projects
+        if (!context.Projects.Any())
+        {
+          context.Projects.AddRange(new List<Project>()
                     {
-                        new Trade()
+                        new Project()
                         {
-                            Title = "Programmer",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first trade",
-                            TradeCategory = TradeCategory.Digital ,
+                            Title = "Building App",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of first proj",
+                            ProjectCategory = ProjectCategory.Tooling,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -102,12 +93,12 @@ namespace KingdomWebApp.Data
                                 State = "NC"
                             }
                         },
-                        new Trade()
+                        new Project()
                         {
-                            Title = "WoodCrafter",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first trade",
-                            TradeCategory = TradeCategory.Craftsman,
+                            Title = "proj 2",
+                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Description = "This is the description of the first project",
+                            ProjectCategory = ProjectCategory.StationUpgrade,
                             AddressId = 5,
                             Address = new Address()
                             {
@@ -117,100 +108,97 @@ namespace KingdomWebApp.Data
                             }
                         }
                     });
+          context.SaveChanges();
+        }
+
+                if (!context.Skills.Any())
+                {
+                    context.Skills.AddRange(new List<Skill>()
+                    {
+                        new Skill()
+                        {
+                            //do not include Id here, it is an 'identity column' or in other words, it is set to auto-increment itself
+                            //and not be set explicitely
+                            Name = "Programming",
+                            Description = "This is the description of the programming skill",    
+                        },
+                        new Skill()
+                        {
+                            
+                            Name = "Woodworking",
+                            Description = "This is the description of the Woodworking skill",
+                        },
+                        new Skill()
+                        {
+                            
+                            Name = "Troubleshooting",
+                            Description = "This is the description of the Troubleshooting skill",
+                        }
+                    });
                     context.SaveChanges();
                 }
             }
-        }
-
-        // This method seeds users and roles into the Identity database.
-
-        public async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
-        {
-            // Create a new scope for dependency injection.
-
-            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-            {
-                //Roles
-                // Retrieve RoleManager to manage Identity roles.
-
-                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                // Create the Admin role if it doesn't exist.
-
-                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-
-                // Create the User role if it doesn't exist.
-
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
-                //Users
-                // Retrieve UserManager to manage Identity users.
-
-                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-
-                string adminUserEmail = "dkzeanah@gmail.com";
-                // Find the admin user by email.
-
-                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
-
-                // If the admin user doesn't exist, create a new one.
-
-                if (adminUser == null)
-                {
-                    var newAdminUser = new AppUser()
-                    {
-                        UserName = "DKZeanah",
-                        Email = adminUserEmail,
-                        EmailConfirmed = true,
-                        Address = new Address()
-                        {
-                            Street = "123 Streety St",
-                            City = "Tuscaloosa",
-                            State = "Al"
-                        }
-                    };
-                    // Create the new admin user with a predefined password from configuration.
-
-                    await userManager.CreateAsync(newAdminUser, _configuration["UserSecrets:AdminPassword"]);
-
-                    // Assign the new admin user to the Admin role.
-
-                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
-                }
-
-                // Find the regular user by email.
-
-                string appUserEmail = "user@etickets.com";
-
-                var appUser = await userManager.FindByEmailAsync(appUserEmail);
-
-                // If the regular user doesn't exist, create a new one.
-
-                if (appUser == null)
-                {
-                    var newAppUser = new AppUser()
-                    {
-                        UserName = "app-user",
-                        Email = appUserEmail,
-                        EmailConfirmed = true,
-                        Address = new Address()
-                        {
-                            Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
-                        }
-                    };
-                    // Create the new regular user with a predefined password.
-
-                    await userManager.CreateAsync(newAppUser, "Program!1234?");
-
-                    // Assign the new regular user to the User role.
-
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-                }
-            }
-        }
     }
+
+    public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+    {
+      using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+      {
+        //Roles
+        var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+          await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+        if (!await roleManager.RoleExistsAsync(UserRoles.User))
+          await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+        //Users
+        var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+        string adminUserEmail = "dkzeanah@gmail.com";
+
+        var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+        if (adminUser == null)
+        {
+          var newAdminUser = new AppUser()
+          {
+            UserName = "DKZeanah",
+            Email = adminUserEmail,
+            EmailConfirmed = true,
+            Address = new Address()
+            {
+              Street = "17038 Finnel rd",
+              City = "Northport",
+              State = "AL"
+            }
+          };
+          await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+          await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+        }
+
+        string appUserEmail = "user@etickets.com";
+
+        var appUser = await userManager.FindByEmailAsync(appUserEmail);
+        if (appUser == null)
+        {
+          var newAppUser = new AppUser()
+          {
+
+            UserName = "app-user",
+            Email = appUserEmail,
+            EmailConfirmed = true,
+            Address = new Address()
+            {
+              Street = "123 Main St",
+              City = "Charlotte",
+              State = "NC"
+            }
+          };
+          await userManager.CreateAsync(newAppUser, "Coding@1234?");
+          await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+        }
+      }
+    }
+
+
+  }
 }
