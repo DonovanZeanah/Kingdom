@@ -32,7 +32,7 @@ namespace KingdomWebApp.Tests.Repository
                           Title = "Skilling Guild 1",
                           Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                           Description = "This is the description of the first cinema",
-                          GuildCategory = GuildCategory.City,
+                          GuildCategory = GuildCategory.Craft,
                           Address = new Address()
                           {
                               Street = "123 Main St",
@@ -55,7 +55,7 @@ namespace KingdomWebApp.Tests.Repository
                 Title = "Skilling Guild 1",
                 Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                 Description = "This is the description of the first cinema",
-                GuildCategory = GuildCategory.City,
+                GuildCategory = GuildCategory.Craft,
                 Address = new Address()
                 {
                     Street = "123 Main St",
@@ -113,7 +113,7 @@ namespace KingdomWebApp.Tests.Repository
                 Title = "Skilling Guild 1",
                 Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                 Description = "This is the description of the first cinema",
-                GuildCategory = GuildCategory.City,
+                GuildCategory = GuildCategory.Craft,
                 Address = new Address()
                 {
                     Street = "123 Main St",
@@ -143,7 +143,7 @@ namespace KingdomWebApp.Tests.Repository
                 Title = "Skilling Guild 1",
                 Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                 Description = "This is the description of the first cinema",
-                GuildCategory = GuildCategory.City,
+                GuildCategory = GuildCategory.Craft,
                 Address = new Address()
                 {
                     Street = "123 Main St",
@@ -187,7 +187,7 @@ namespace KingdomWebApp.Tests.Repository
                 Title = "Skilling Guild 1",
                 Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                 Description = "This is the description of the first cinema",
-                GuildCategory = GuildCategory.City,
+                GuildCategory = GuildCategory.Craft,
                 Address = new Address()
                 {
                     Street = "123 Main St",

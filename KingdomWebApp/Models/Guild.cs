@@ -22,6 +22,7 @@ namespace KingdomWebApp.Models
 
         public GuildSubcategory GuildSubcategory { get; set; }
         public State State { get; set; }
-        public City City { get; set; }
+        public int? CityId { get; set; }
+        public City? City { get; set; }
     }
 }

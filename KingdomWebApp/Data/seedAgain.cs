@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WorkshopGroup.Data.Enum;
-using WorkshopGroup.Models;
+﻿using Kingdom.Models;
+using Microsoft.AspNetCore.Identity;
+using KingdomWebApp.Models;
+using KingdomWebApp.Helpers;
+using KingdomWebApp.Data;
 
-using WorkshopGroup.Data;
-using ContactWebModels;
-
-namespace WorkshopGroup.Data
+namespace KingdomWebApp.Data
 {
-  public class seedAgain : seed
+  public class seedAgain : Seed
   {
     private readonly ApplicationDbContext dataContext;
     public seedAgain(ApplicationDbContext context)

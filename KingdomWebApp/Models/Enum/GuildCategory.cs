@@ -4,8 +4,11 @@
     {
         RoadRunner,
         Womens,
-        City,
         Trail,
-        Endurance
+        Endurance,
+        WoodWorking,
+        Metalworking,
+        Engraving,
+        Craft
     }
 }

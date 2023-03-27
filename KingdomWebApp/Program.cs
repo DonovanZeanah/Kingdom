@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using WorkshopGroup.Data;
+using KingdomWebApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpContextAccessor();
@@ -27,8 +27,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<seed>();
-builder.Services.AddTransient<seedAgain>();
+//builder.Services.AddTransient<seed>();
+//builder.Services.AddTransient<seedAgain>();
+
 // Register repository and service classes for dependency injection.
 builder.Services.AddScoped<IGuildRepository, GuildRepository>();
 builder.Services.AddScoped<ITradeRepository, TradeRepository>();
@@ -36,6 +37,10 @@ builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+
+// Add and configure Identity for AppUser and IdentityRole.
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Configure Cloudinary settings from the appsettings.json file.
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
@@ -69,9 +74,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     }
 });
 
-// Add and configure Identity for AppUser and IdentityRole.
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 // Add memory cache and session services.
 builder.Services.AddMemoryCache();
@@ -87,17 +90,17 @@ var app = builder.Build();
 // Check if the seeddata argument is provided.
 //if (args.Length == 1 && args[0].ToLower() == "seeddata")
 //{
-    // Create a service scope and seed data.
-    using (var serviceScope = app.Services.CreateScope())
-    {
-        var configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
-        var seed = new Seed(configuration);
+// Create a service scope and seed data.
+/*using (var serviceScope = app.Services.CreateScope())
+{
+    var configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
+    var seed = new Seed(configuration);
 
-        // Seed users and roles.
-        await seed.SeedUsersAndRolesAsync(app);
-        // Seed other data.
-        seed.SeedData(app);
-    }
+    // Seed users and roles.
+    await seed.SeedUsersAndRolesAsync(app);
+    // Seed other data.
+    seed.SeedData(app);
+}*/
 //}
 
 // Configure the HTTP request pipeline.

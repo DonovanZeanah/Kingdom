@@ -73,7 +73,7 @@ namespace KingdomWebApp.Scraper.Services
                                     State = state.ToUpper(),
                                     City = city.FirstCharToUpper()
                                 },
-                                GuildCategory = GuildCategory.City
+                                GuildCategory = GuildCategory.Craft
                             };
                             using (var context = new ScraperDBContext())
                             {

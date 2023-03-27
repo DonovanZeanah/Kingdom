@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WorkshopGroup.Data.Enum;
-using WorkshopGroup.Models;
+﻿/*using Microsoft.AspNetCore.Identity;
+using KingdomWebApp.Models;
 
-using WorkshopGroup.Data;
+using KingdomWebApp.Data;
+using KingdomWebApp.Models.Enum;
 
-namespace WorkshopGroup.Data
+namespace KingdomWebApp.Data
 {
   public class seed
   {
@@ -16,16 +16,16 @@ namespace WorkshopGroup.Data
 
         context.Database.EnsureCreated();
 
-        if (!context.Clubs.Any())
+        if (!context.Guilds.Any())
         {
-          context.Clubs.AddRange(new List<Club>()
+          context.Guilds.AddRange(new List<Guild>()
                     {
-                        new Club()
+                        new Guild()
                         {
-                            Title = "WoodWorking Club",
+                            Title = "WoodWorking Guild",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the WWC",
-                            ClubCategory = ClubCategory.WoodWorking,
+                            GuildCategory = GuildCategory.WoodWorking,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -33,12 +33,12 @@ namespace WorkshopGroup.Data
                                 State = "NC"
                             }
                          },
-                        new Club()
+                        new Guild()
                         {
-                            Title = "Metalworking Club",
+                            Title = "Metalworking Guild",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the MWC",
-                            ClubCategory = ClubCategory.Metalworking,
+                            GuildCategory = GuildCategory.Metalworking,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -46,12 +46,12 @@ namespace WorkshopGroup.Data
                                 State = "AL"
                             }
                         },
-                        new Club()
+                        new Guild()
                         {
                             Title = "Engraving",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the EG",
-                            ClubCategory = ClubCategory.Engraving,
+                            GuildCategory = GuildCategory.Engraving,
                             Address = new Address()
                             {
                                 Street = "133 Main St",
@@ -59,12 +59,12 @@ namespace WorkshopGroup.Data
                                 State = "AL"
                             }
                         },
-                        new Club()
+                        new Guild()
                         {
                             Title = "ThreeDPrinting",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the 3DPC",
-                            ClubCategory = ClubCategory.ThreeDprinting,
+                            GuildCategory = GuildCategory.Endurance,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -201,4 +201,4 @@ namespace WorkshopGroup.Data
 
 
   }
-}
+}*/

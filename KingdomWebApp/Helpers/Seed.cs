@@ -15,6 +15,12 @@ namespace KingdomWebApp.Helpers
         {
             _configuration = configuration;
         }
+
+        protected Seed()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SeedData(IApplicationBuilder applicationBuilder)
         {
 
@@ -34,7 +40,7 @@ namespace KingdomWebApp.Helpers
                             Title = "Programming",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first cinema",
-                            GuildCategory = GuildCategory.City,
+                            GuildCategory = GuildCategory.Craft,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
@@ -73,7 +79,7 @@ namespace KingdomWebApp.Helpers
                             Title = "Mercedes",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/Quest.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first guild",
-                            GuildCategory = GuildCategory.City,
+                            GuildCategory = GuildCategory.Craft,
                             GuildSubcategory = GuildSubcategory.Automotive,
                             Address = new Address()
                             {
