@@ -83,8 +83,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 var app = builder.Build();
 
 // Check if the seeddata argument is provided.
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
-{
+//if (args.Length == 1 && args[0].ToLower() == "seeddata")
+//{
     // Create a service scope and seed data.
     using (var serviceScope = app.Services.CreateScope())
     {
@@ -96,7 +96,7 @@ if (args.Length == 1 && args[0].ToLower() == "seeddata")
         // Seed other data.
         seed.SeedData(app);
     }
-}
+//}
 
 // Configure the HTTP request pipeline.
 // If not in development mode, use a custom error handler and enable HSTS.
