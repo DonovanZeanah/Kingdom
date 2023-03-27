@@ -64,11 +64,6 @@ jobs:
 
       steps:
 
-        - name: Run migrations
-          env:
-            ConnectionString: ${{ secrets.CONNECTION_STRING }}
-          run: dotnet ef database update --project KingdomWebApp/KingdomWebApp.csproj
-
         - name: Download artifact from build job
           uses: actions/download-artifact@v2
           with:
