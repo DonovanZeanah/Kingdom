@@ -3,8 +3,10 @@
 @inject UserManager<AppUser> UserManager
 
 @{
+
     var currentUser = await UserManager.GetUserAsync(User);
 }
+
 
 <!DOCTYPE html>
 <html lang="en">

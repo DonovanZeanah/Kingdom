@@ -34,7 +34,7 @@
                         <span asp-validation-for="Title" class="text-danger"></span>
                       </div>
                       <div class="col">                        
-                        <select asp-for="GuildCategory" asp-items="@Html.GetEnumSelectList<GuildCategory>()" class="form-control form-control-lg">
+                        <select asp-for="GuildCategory" asp-items="Html.GetEnumSelectList<GuildCategory>()" class="form-control form-control-lg">
                                 <option>--Select--</option>
                         </select>
                         <span asp-validation-for="GuildCategory" class="text-danger"></span>
