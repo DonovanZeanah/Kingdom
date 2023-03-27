@@ -32,6 +32,9 @@ jobs:
       - name: dotnet install ef
         run: dotnet tool install -g dotnet-ef
 
+      - name: dotnet restore with win-x64 runtime
+        run: dotnet restore --runtime win-x64
+
       - name: dotnet bundle migration
         run: dotnet ef migrations bundle -p KingdomWebApp\KingdomWebApp.csproj -o ${{env.DOTNET_ROOT}}\migrate --verbose
 
