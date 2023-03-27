@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using WorkshopGroup.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpContextAccessor();
