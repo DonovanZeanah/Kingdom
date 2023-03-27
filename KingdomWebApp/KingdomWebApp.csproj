@@ -11,6 +11,7 @@
 		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npm ci" />
 		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npx ng build --configuration production" />
 		<ItemGroup>
+			<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
 			<DistFiles Include="ClientApp\dist\**" />
 			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
 				<RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
