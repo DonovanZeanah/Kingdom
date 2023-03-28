@@ -40,8 +40,8 @@ jobs:
           
       - name: Copy Angular build output to wwwroot
         run: |
-          mkdir -p /home/runner/.dotnet/myapp/wwwroot/
-          cp -R KingdomWebApp/ClientApp/dist/* /home/runner/.dotnet/KingdomWebApp/
+          mkdir -p /home/runner/.dotnet/KingdomWebApp/wwwroot/
+          cp -R KingdomWebApp/ClientApp/dist/* /home/runner/.dotnet/KingdomWebApp/wwwroot
           shell: /usr/bin/bash -e {0}
             env:
           DOTNET_ROOT: /home/runner/.dotnet
