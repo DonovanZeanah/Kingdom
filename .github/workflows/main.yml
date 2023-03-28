@@ -21,10 +21,6 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\KingdomWebApp
@@ -32,14 +28,6 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Install dependencies and build Angular app
-        working-directory: 'KingdomWebApp\ClientApp'
-        run: |
-          npm ci
-          npx ng build --configuration production
-      - name: Copy Angular build output to wwwroot
-        run: |
-          mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/dist/
       - name: Upload artifact for deployment job
         if: always()
         uses: actions/upload-artifact@v2
