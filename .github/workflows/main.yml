@@ -19,7 +19,6 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\KingdomWebApp
 
