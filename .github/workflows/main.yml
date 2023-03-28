@@ -29,9 +29,6 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
 
-      - name: Restore dependencies
-        run: dotnet restore
-
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
@@ -43,7 +40,7 @@ jobs:
           
       - name: Copy Angular build output to wwwroot
         run: |
-          mkdir ${{env.DOTNET_ROOT}}/myapp/wwwroot/
+          mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/
           cp -R KingdomWebApp/ClientApp/dist/* ${{env.DOTNET_ROOT}}/KingdomWebApp/
           
       - name: Upload artifact for deployment job
