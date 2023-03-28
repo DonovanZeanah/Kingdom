@@ -27,25 +27,31 @@ jobs:
           node-version: 16
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/KingdomWebApp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\KingdomWebApp
+
+      - name: dotnet install ef
+        run: dotnet tool install -g dotnet-ef
+
+      - name: dotnet restore with win-x64 runtime
+        run: dotnet restore --runtime win-x64
+
+      - name: dotnet bundle migration
+        run: dotnet ef migrations bundle -p KingdomWebApp\KingdomWebApp.csproj -o ${{env.DOTNET_ROOT}}\migrate --verbose
+
+      - name: Restore dependencies
+        run: dotnet restore
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: Install dependencies and build Angular app
-        working-directory: 'KingdomWebApp/ClientApp'
+        working-directory: 'KingdomWebApp\ClientApp'
         run: |
           npm ci
           npx ng build --configuration production
-          
       - name: Copy Angular build output to wwwroot
         run: |
-          mkdir -p /home/runner/.dotnet/KingdomWebApp/wwwroot/
-          cp -R KingdomWebApp/ClientApp/dist/* /home/runner/.dotnet/KingdomWebApp/wwwroot
-          shell: /usr/bin/bash -e {0}
-            env:
-          DOTNET_ROOT: /home/runner/.dotnet
-          
+          mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/dist/
       - name: Upload artifact for deployment job
         if: always()
         uses: actions/upload-artifact@v2
@@ -70,4 +76,4 @@ jobs:
           with:
             app-name: 'MyKd'
             publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1234 }}
-            package: ${{ github.workspace }}/MykdApp
+            package: .
