@@ -43,7 +43,7 @@ jobs:
       - name: Copy Angular build output to wwwroot
         run: |
           mkdir ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/dist/
-          cp -R KingdomWebApp/ClientApp/dist/KingdomWebApp/* ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/dist/
+          cp -R KingdomWebApp/ClientApp/dist/* ${{env.DOTNET_ROOT}}/KingdomWebApp/wwwroot/dist/
       - name: Upload artifact for deployment job
         if: always()
         uses: actions/upload-artifact@v2
