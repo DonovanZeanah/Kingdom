@@ -19,19 +19,18 @@ jobs:
           dotnet-version: '7.0.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release --verbosity detailed
-
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ./KingdomWebApp --runtime ubuntu.20.04-x64
-
       - name: dotnet install ef
         run: dotnet tool install -g dotnet-ef
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release --verbosity detailed
+      
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ./KingdomWebApp --runtime ubuntu.20.04-x64
 
       - name: dotnet bundle migration
         run: dotnet ef migrations bundle -p KingdomWebApp/KingdomWebApp.csproj -o ./KingdomWebApp/migrate --verbose
  
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
