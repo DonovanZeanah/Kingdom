@@ -1,6 +1,5 @@
 // Create a new WebApplication builder with the given command line arguments.
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
+
 using KingdomWebApp.Data;
 using KingdomWebApp.Helpers;
 using KingdomWebApp.Interfaces;
@@ -8,14 +7,9 @@ using KingdomWebApp.Models;
 using KingdomWebApp.Repository;
 using KingdomWebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using KingdomWebApp.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpContextAccessor();
