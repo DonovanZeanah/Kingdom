@@ -20,7 +20,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --verbosity detailed
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ./KingdomWebApp --runtime ubuntu.20.04-x64
