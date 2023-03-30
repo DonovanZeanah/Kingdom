@@ -29,7 +29,8 @@ jobs:
         run: dotnet tool install -g dotnet-ef
 
       - name: dotnet bundle migration
-        run: dotnet ef migrations bundle -p KingdomWebApp/KingdomWebApp.csproj -o 
+        run: dotnet ef migrations bundle -p KingdomWebApp/KingdomWebApp.csproj -o ./KingdomWebApp/migrate --verbose
+ 
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
