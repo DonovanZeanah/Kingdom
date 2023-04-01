@@ -33,8 +33,6 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 
 // Add and configure Identity for AppUser and IdentityRole.
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Configure Cloudinary settings from the appsettings.json file.
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
@@ -42,13 +40,13 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 
 // Add and configure the ApplicationDbContext to use SQL Server.
 
-builder.Configuration.AddEnvironmentVariables();
+//builder.Configuration.AddEnvironmentVariables();
 
-if (builder.Environment.IsDevelopment())
+/*if (builder.Environment.IsDevelopment())
 {
     builder.Configuration.AddUserSecrets<Program>();
 }
-
+*/
 
 
 
@@ -56,17 +54,22 @@ if (builder.Environment.IsDevelopment())
 // Configure the ApplicationDbContext to use SQL Server with the correct connection string.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    if (builder.Environment.IsDevelopment())
-    {
-        var connectionString = builder.Configuration.GetConnectionString("DevelopmentConnection");
-       options.UseSqlServer(connectionString);
-    }
-    else
-    {
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        options.UseSqlServer(connectionString);
-    }
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+/* if (builder.Environment.IsDevelopment())
+ {
+     var connectionString = builder.Configuration.GetConnectionString("DevelopmentConnection");
+    options.UseSqlServer(connectionString);
+ }
+ else
+ {
+     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+     options.UseSqlServer(connectionString);
+ }
+});*/
 
 
 

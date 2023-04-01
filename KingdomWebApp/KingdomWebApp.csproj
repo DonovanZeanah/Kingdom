@@ -1,10 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<OutputType>Exe</OutputType>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
 		<UserSecretsId>{6075F078-ABF9-477E-8444-FD96EB6EDF25}</UserSecretsId>
 	</PropertyGroup>
 
@@ -96,6 +94,7 @@
   <ItemGroup>
 	<PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
 	<PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
+	<PackageReference Include="IPinfo" Version="2.1.0" />
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.4" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
@@ -105,8 +104,9 @@
 	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
 	  <PrivateAssets>all</PrivateAssets>
-	  <IncludeAssets>Questtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  <IncludeAssets> build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>

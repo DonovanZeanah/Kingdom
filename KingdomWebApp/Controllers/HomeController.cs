@@ -9,6 +9,8 @@ using KingdomWebApp.ViewModels;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
+using static System.Net.WebRequestMethods;
+
 
 namespace KingdomWebApp.Controllers
 {
@@ -19,15 +21,17 @@ namespace KingdomWebApp.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILocationService _locationService;
+        private readonly IConfiguration _configuration;
 
         public HomeController(ILogger<HomeController> logger, IGuildRepository guildRepository,
-            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ILocationService locationService)
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ILocationService locationService, IConfiguration configuration)
         {
             _logger = logger;
             _guildRepository = guildRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _locationService = locationService;
+            _configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
@@ -36,7 +40,9 @@ namespace KingdomWebApp.Controllers
             var homeViewModel = new HomeViewModel();
             try
             {
-                string url = "https://ipinfo.io?token=63d5ada815b74c";
+                string url = "https://ipinfo.io/172.56.224.138?token=aa971003411fa3";
+                Console.WriteLine(url);
+                
                 var info = new WebClient().DownloadString(url);
                 ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
                 RegionInfo myRI1 = new RegionInfo(ipInfo.Country);
@@ -56,6 +62,7 @@ namespace KingdomWebApp.Controllers
 
             return View(homeViewModel);
         }
+
 
         public IActionResult Register() 
         {

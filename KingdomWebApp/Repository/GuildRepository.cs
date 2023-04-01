@@ -69,7 +69,7 @@ namespace KingdomWebApp.Repository
 
         public async Task<IEnumerable<Guild>> GetGuildByCity(string city)
         {
-            return await _context.Guilds.Where(c => c.Address.City.Contains(city)).Distinct().ToListAsync();
+            return await _context.Guilds.Where(g => g.Address.City.Contains(city)).Distinct().ToListAsync();
         }
 
         public bool Save()

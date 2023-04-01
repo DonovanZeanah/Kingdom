@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using KingdomWebApp.Models;
 
 using KingdomWebApp.Data;
@@ -201,4 +201,4 @@ namespace KingdomWebApp.Data
 
 
   }
-}*/
+}
