@@ -15,5 +15,6 @@ namespace KingdomWebApp.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
+        public object SupplyOwners { get; set; }
     }
 }

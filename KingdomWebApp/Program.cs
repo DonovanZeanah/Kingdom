@@ -1,6 +1,5 @@
 // Create a new WebApplication builder with the given command line arguments.
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
+
 using KingdomWebApp.Data;
 using KingdomWebApp.Helpers;
 using KingdomWebApp.Interfaces;
@@ -8,13 +7,9 @@ using KingdomWebApp.Models;
 using KingdomWebApp.Repository;
 using KingdomWebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpContextAccessor();
@@ -26,6 +21,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//builder.Services.AddTransient<seed>();
+//builder.Services.AddTransient<seedAgain>();
 
 // Register repository and service classes for dependency injection.
 builder.Services.AddScoped<IGuildRepository, GuildRepository>();
@@ -34,6 +31,10 @@ builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+
+// Add and configure Identity for AppUser and IdentityRole.
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Configure Cloudinary settings from the appsettings.json file.
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
@@ -57,7 +58,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        var connectionString = builder.Configuration.GetConnectionString("DevelopmentConnection");
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
        options.UseSqlServer(connectionString);
     }
     else
@@ -67,9 +68,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     }
 });
 
-// Add and configure Identity for AppUser and IdentityRole.
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 // Add memory cache and session services.
 builder.Services.AddMemoryCache();
@@ -83,20 +82,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 var app = builder.Build();
 
 // Check if the seeddata argument is provided.
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
+//if (args.Length == 1 && args[0].ToLower() == "seeddata")
+//{
+// Create a service scope and seed data.
+/*using (var serviceScope = app.Services.CreateScope())
 {
-    // Create a service scope and seed data.
-    using (var serviceScope = app.Services.CreateScope())
-    {
-        var configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
-        var seed = new Seed(configuration);
+    var configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
+    var seed = new Seed(configuration);
 
-        // Seed users and roles.
-        await seed.SeedUsersAndRolesAsync(app);
-        // Seed other data.
-        seed.SeedData(app);
-    }
-}
+    // Seed users and roles.
+    await seed.SeedUsersAndRolesAsync(app);
+    // Seed other data.
+    seed.SeedData(app);
+}*/
+//}
 
 // Configure the HTTP request pipeline.
 // If not in development mode, use a custom error handler and enable HSTS.

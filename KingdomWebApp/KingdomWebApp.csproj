@@ -7,23 +7,116 @@
 	  <UserSecretsId>{6075F078-ABF9-477E-8444-FD96EB6EDF25}</UserSecretsId>
   </PropertyGroup>
 
-	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npm ci" />
-		<Exec WorkingDirectory="$(ProjectDir)ClientApp" Command="npx ng build --configuration production" />
-		<ItemGroup>
-			<DistFiles Include="ClientApp\dist\**" />
-			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-				<RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
-				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-			</ResolvedFileToPublish>
-		</ItemGroup>
-	</Target>
 
   <ItemGroup>
 	<Compile Remove="Migrations\**" />
 	<Content Remove="Migrations\**" />
 	<EmbeddedResource Remove="Migrations\**" />
 	<None Remove="Migrations\**" />
+	<Content Remove="wwwroot\polyfills.16bde881d3a79310.js" />
+	<Content Remove="wwwroot\styles.ef46db3751d8e999.css" />
+	<Content Remove="wwwroot\runtime.1dbcb07716af54b4.js" />
+	<Content Remove="wwwroot\favicon.ico" />
+	<Content Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+	<Content Remove="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+	<Content Remove="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+	<Content Remove="wwwroot\lib\bootstrap\LICENSE" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+	<Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+	<Content Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
+	<Content Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
+	<Content Remove="wwwroot\js\AngularApp.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\theme.css.map" />
+    <None Include="wwwroot\js\AngularApp.js" />
+    <None Include="wwwroot\js\aos.js" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\bootstrap.js.map" />
+    <None Include="wwwroot\js\custom.js" />
+    <None Include="wwwroot\js\flatpickr.min.js" />
+    <None Include="wwwroot\js\flickity.pkgd.js" />
+    <None Include="wwwroot\js\flickity.pkgd.min.js" />
+    <None Include="wwwroot\js\jarallax-element.min.js" />
+    <None Include="wwwroot\js\jarallax-element.min.js.map" />
+    <None Include="wwwroot\js\jarallax-video.min.js" />
+    <None Include="wwwroot\js\jarallax-video.min.js.map" />
+    <None Include="wwwroot\js\jarallax.min.js" />
+    <None Include="wwwroot\js\jarallax.min.js.map" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\jquery.smartWizard.min.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\js\popper.min.js.map" />
+    <None Include="wwwroot\js\prism.js" />
+    <None Include="wwwroot\js\scrollMonitor.js" />
+    <None Include="wwwroot\js\scrollMonitor.js.map" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\smooth-scroll.polyfills.min.js" />
+    <None Include="wwwroot\js\theme.js" />
+    <None Include="wwwroot\js\theme.js.map" />
+    <None Include="wwwroot\js\zoom-vanilla.min.js" />
+    <None Include="wwwroot\js\zoom.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +129,12 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>Questtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\bootstrap\dist\css" />
+    <Folder Include="wwwroot\lib\jquery-validation\dist" />
+    <Folder Include="wwwroot\lib\jquery\dist" />
   </ItemGroup>
 
 </Project>

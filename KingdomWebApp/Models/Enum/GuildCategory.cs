@@ -6,6 +6,7 @@
         Womens,
         City,
         Trail,
-        Endurance
+        Endurance,
+        Craft
     }
 }
